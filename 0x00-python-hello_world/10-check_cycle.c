@@ -3,27 +3,30 @@
 #include <stdlib.h>
 
 /**
- * check_cycle - Checks if a linked list has a cycle
- * @list: Pointer to the head node of the list
+ * check_cycle - Checks if a singly-linked list contains a cycle.
+ * @list: singly-linked list.
  *
- * Return: 1 if a cycle is present, 0 otherwise
+ * Return: If there is no cycle - 0.
+ *         If there is a cycle - 1.
  */
 int check_cycle(listint_t *list)
 {
+	listint_t *current, *runner;
+
 	if (list == NULL || list->next == NULL)
 		return (0);
 
-	listint_t *tortoise = list;
-	listint_t *hare = list;
+	current = list->next;
+	runner = list->next->next;
 
-	do {
-		tortoise = tortoise->next;
-		hare = hare->next->next;
+	while (current && runner && runner->next)
+	{
+		if (current == runner)
+			return (1);
 
-		if (hare == NULL || hare->next == NULL)
-			return (0);
+		current = current->next;
+		runner = runner->next->next;
+	}
 
-	} while (tortoise != hare);
-
-	return (1);
+	return (0);
 }
