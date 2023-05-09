@@ -3,30 +3,30 @@
 #include <stdlib.h>
 
 /**
- * check_cycle - checks if a singly linked list has a cycle in it
- * @list: singly linked list
- * Return: 0 if there is no cycle, else 1
+ * check_cycle - Checks if a singly-linked list contains a cycle.
+ * @list: A singly-linked list.
+ *
+ * Return: If there is no cycle - 0.
+ *         If there is a cycle - 1.
  */
-
 int check_cycle(listint_t *list)
 {
-	listint_t *head;
-	listint_t *tail;
+	listint_t *current, *runner;
 
-	if (list == NULL)
+	if (list == NULL || list->next == NULL)
 		return (0);
 
-	head = list;
-	tail = list;
+	current = list->next;
+	runner = list->next->next;
 
-	while (tail != NULL && tail->next != NULL)
+	while (current && runner && runner->next)
 	{
-		head = head->next;
-		tail = tail->next->next;
-
-		if (head == tail)
+		if (current == runner)
 			return (1);
 
+		current = current->next;
+		runner = runner->next->next;
 	}
+
 	return (0);
 }
