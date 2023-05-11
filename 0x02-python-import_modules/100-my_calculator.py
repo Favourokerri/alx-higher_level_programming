@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 if __name__ == "__main__":
     import sys
-    from  calculator_1 import add, sub, mul, div
+    from calculator_1 import add, sub, mul, div
     operators = ['+', '-', '*', '/']
     count = len(sys.argv)
     if count < 4 or count > 4:
@@ -20,4 +20,3 @@ if __name__ == "__main__":
         print("{:d} * {:d} = {:d}".format(a, b, mul(a, b)))
     elif sys.argv[2] == operators[3]:
         print("{:d} / {:d} = {:d}".format(a, b, div(a, b)))
-
