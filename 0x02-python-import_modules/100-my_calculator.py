@@ -11,7 +11,7 @@ if __name__ == "__main__":
         a = int(sys.argv[1])
         b = int(sys.argv[3])
     if sys.argv[2] not in operators:
-        print(" Unknown operator. Available operators: +, -, * and /")
+        print("Unknown operator. Available operators: +, -, * and /")
     elif sys.argv[2] == operators[0]:
         print("{:d} + {:d} = {:d}".format(a, b, add(a, b)))
     elif sys.argv[2] == operators[1]:
