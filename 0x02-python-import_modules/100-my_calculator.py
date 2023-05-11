@@ -3,8 +3,8 @@ if __name__ == "__main__":
     import sys
     from calculator_1 import add, sub, mul, div
     operators = ['+', '-', '*', '/']
-    count = len(sys.argv)
-    if count < 4 or count > 4:
+    count = len(sys.argv) - 1
+    if count != 3:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         sys.exit(1)
     else:
