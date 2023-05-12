@@ -5,5 +5,5 @@ def element_at(my_list, idx):
         return None
     elif idx not in my_list:
         return None
-    elif idx in my_list:
+    else:
         return my_list[idx]
