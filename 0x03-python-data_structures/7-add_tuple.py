@@ -7,7 +7,9 @@ def add_tuple(tuple_a=(), tuple_b=()):
         add1 = int(tuple_a[0]) + int(tuple_b[0])
         add2 = int(tuple_a[1]) + int(tuple_b[1])
         return ((add1, add2))
-    elif len_tuple_a == 1:
-        tuple_a[1] = 0
-    elif len_tuple_b ==1:
-        tuple_b[1] = 0
+    elif len_tuple_b == 1:
+        new_element = 0
+        new_b = tuple_b + (new_element,)
+        add1 = int(tuple_a[0]) + int(tuple_b[0])
+        add2 = int(tuple_a[1]) + int(new_b[1])
+        return ((add1, add2))
