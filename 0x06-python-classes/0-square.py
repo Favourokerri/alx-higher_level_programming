@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-""" defines square """
+# 0-square.py
+"""Defines a square """
+
 
 class Square:
-    """dose nothing"""
+    """Does nothing"""
     pass
