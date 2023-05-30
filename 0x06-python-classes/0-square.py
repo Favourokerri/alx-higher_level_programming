@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 # 0-square.py
-# Favour Okerri
-"""Defines a square. """
+"""Define a class Square."""
 
 
 class Square:
-    """Does nothing. """
+    """Represent a square."""
     pass
