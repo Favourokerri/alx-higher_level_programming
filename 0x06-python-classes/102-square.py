@@ -1,4 +1,4 @@
- #!/usr/bin/python3
+#!/usr/bin/python3
 """My square module"""
 
 
@@ -13,10 +13,10 @@ class Square:
 
     @property
     def size(self):
-        """"The propery of size as the len of a side of Square
+        """The property of size as the length of a side of Square
         Raises:
             TypeError: if size != int
-            ValueErrorr: if size < 0
+            ValueError: if size < 0
         """
         return self.__size
 
