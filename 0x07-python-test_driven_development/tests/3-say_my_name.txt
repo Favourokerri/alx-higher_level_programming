@@ -1,0 +1,51 @@
+===================test for the function say_my_name========
+
+this function prints My name is <first name> <last name>
+its second arguement can be optional but both elements must be strings
+
+importing the module:
+	>>> say_my_name = __import__("3-say_my_name").say_my_name
+
+testing with valid:
+	>>> say_my_name("favour", "okerri")
+	My name is favour okerri
+
+testing for if only first argument specified:
+	>>> say_my_name("favour")
+	My name is favour 
+
+testing with empty strings:
+	>>> say_my_name("", "")
+	My name is  
+
+testing with first args empty string:
+	>>> say_my_name("", "okerri")
+	My name is  okerri
+
+testing with second args empty string:
+	>>> say_my_name("favour", "")
+	My name is favour 
+
+testing if two arguements are not strings:
+	>>> say_my_name(2, 4)
+	Traceback (most recent call last):
+         ...
+        TypeError: first_name must be a string
+
+testing if first args is not string:
+	>>> say_my_name(2, "john")
+	Traceback (most recent call last):
+	 ...
+	TypeError: first_name must be a string
+
+testing if second args is not string:
+	>>> say_my_name("favour", 34)
+	Traceback (most recent call last):
+	 ...
+	TypeError: last_name must be a string
+
+Checking for when more than 2 args are passed:
+	 >>> say_my_name("Charles", "Osoti", "Victor")
+	 Traceback (most recent call last):
+	 ...
+	 TypeError: say_my_name() takes from 1 to 2 positional arguments but 3 were given
