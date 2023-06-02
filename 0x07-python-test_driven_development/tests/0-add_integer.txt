@@ -1,0 +1,52 @@
+=========== test cases for 0-add_intege.py ============
+the module 0-add_integer.py adds two numbers together.
+and the either have to be a float or an integer but the end result always has to be an integer
+
+first, importing the module:
+	>>> add_integer = __import__('0-add_integer').add_integer
+	>>> add_integer(2, 4)
+	6
+
+testing for input of only frst number a:
+	>>> add_integer(2,)
+	100
+
+testing for value of the first agrgument entered(a):
+	>>> add_integer("re", 2)
+	Traceback (most recent call last):
+            ...
+        TypeError: a must be an integer
+
+testing for value of the second arguement entered(b):
+	>>> add_integer(2, "t")
+	Traceback (most recent call last):
+            ...
+	TypeError: b must be an integer
+
+testing args as float:
+	>>> add_integer(6.0, 3.0)
+	9
+
+testing first arg as float:
+	>>> add_integer(6.0, 2)
+	8
+
+testing second args as float:
+	>>> add_integer(2, 6.0)
+	8
+
+testing both args as negative values:
+	>>> add_integer(-2, -3)
+	-5
+
+checking no args:
+	 >>> add_integer()
+	 Traceback (most recent call last):
+	 ...
+	 TypeError: add_integer() missing 1 required positional argument: 'a'
+
+Checking more than 2 args:
+	 >>> add_integer(1, 2, 3)
+         Traceback (most recent call last):
+         ...
+	 TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
