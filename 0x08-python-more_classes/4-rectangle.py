@@ -6,8 +6,8 @@ class Rectangle:
     """A class that defines a rectangle"""
     def __init__(self, width=0, height=0):
         """initialze instance of the clss """
-        self.__width = width
-        self.__height = height
+        self.width = width
+        self.height = height
 
     @property
     def width(self):
@@ -42,17 +42,22 @@ class Rectangle:
 
     def perimeter(self):
         """calculate the area of perimeter for a rectangle """
-        return (self.__width + self.__height) * 2
+        if self.__width == 0 or self.__height == 0:
+            return (0)
+        else:
+            return ((self.__width * 2) + (self.__height * 2))
 
     def __str__(self):
+        """ print rectangle in string format """
         if self.__width == 0 or self.__height == 0:
             return ("")
-        else:
-            rectangle_str = ""
-            j = 0
-            while j < self.__height:
-                rectangle_str += "#" * self.__width + "\n"
-                j += 1
-            return rectangle_str
+        rectangle = ""
+        for column in range(self.__height):
+            for row in range(self.__width):
+                rectangle += "#"
+            if column < self.__height - 1:
+                rectangle += "\n"
+        return (rectangle)
+
     def __repr__(self):
         return "Rectangle({}, {})".format(self.__width, self.__height)
