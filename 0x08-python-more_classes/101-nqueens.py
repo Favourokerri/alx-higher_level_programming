@@ -4,77 +4,77 @@
 import sys
 
 
-def init(n):
+def initialize_board(n):
     """Initialize an `n`x`n` sized chessboard with 0's."""
     board = []
-    [board.append([]) for i in range(n)]
-    [row.append(' ') for i in range(n) for row in board]
+    [board.append([]) for _ in range(n)]
+    [row.append(' ') for _ in range(n) for row in board]
     return board
 
 
-def copy(board):
+def copy_board(board):
     """Return a deepcopy of a chessboard."""
     if isinstance(board, list):
-        return list(map(copy, board))
+        return list(map(copy_board, board))
     return board
 
 
-def solution(board):
+def get_solution(board):
     """Return the list of lists representation of a solved chessboard."""
-    sol = []
+    solution = []
     for r in range(len(board)):
         for c in range(len(board)):
             if board[r][c] == "Q":
-                sol.append([r, c])
+                solution.append([r, c])
                 break
-    return sol
+    return solution
 
 
-def x_out(board, row, col):
-    """X out spots on a chessboard.
+def mark_unavailable_spots(board, row, col):
+    """Mark spots on a chessboard as unavailable.
 
     All spots where non-attacking queens can no
-    longer be played are X-ed out.
+    longer be placed are marked as 'x'.
 
     Args:
         board (list): The current working chessboard.
-        row (int): The row where a queen was last played.
-        col (int): The column where a queen was last played.
+        row (int): The row where a queen was last placed.
+        col (int): The column where a queen was last placed.
     """
-    # X out all forward spots
+    # Mark all forward spots as 'x'
     for c in range(col + 1, len(board)):
         board[row][c] = "x"
-    # X out all backwards spots
+    # Mark all backward spots as 'x'
     for c in range(col - 1, -1, -1):
         board[row][c] = "x"
-    # X out all spots below
+    # Mark all spots below as 'x'
     for r in range(row + 1, len(board)):
         board[r][col] = "x"
-    # X out all spots above
+    # Mark all spots above as 'x'
     for r in range(row - 1, -1, -1):
         board[r][col] = "x"
-    # X out all spots diagonally down to the right
+    # Mark all spots diagonally down to the right as 'x'
     c = col + 1
     for r in range(row + 1, len(board)):
         if c >= len(board):
             break
         board[r][c] = "x"
         c += 1
-    # X out all spots diagonally up to the left
+    # Mark all spots diagonally up to the left as 'x'
     c = col - 1
     for r in range(row - 1, -1, -1):
         if c < 0:
             break
         board[r][c]
         c -= 1
-    # X out all spots diagonally up to the right
+    # Mark all spots diagonally up to the right as 'x'
     c = col + 1
     for r in range(row - 1, -1, -1):
         if c >= len(board):
             break
         board[r][c] = "x"
         c += 1
-    # X out all spots diagonally down to the left
+    # Mark all spots diagonally down to the left as 'x'
     c = col - 1
     for r in range(row + 1, len(board)):
         if c < 0:
@@ -83,29 +83,29 @@ def x_out(board, row, col):
         c -= 1
 
 
-def solve(board, row, queens, sols):
+def solve_nqueens(board, row, queens, solutions):
     """Recursively solve an N-queens puzzle.
 
     Args:
         board (list): The current working chessboard.
         row (int): The current working row.
         queens (int): The current number of placed queens.
-        sols (list): A list of lists of solutions.
+        solutions (list): A list of lists of solutions.
     Returns:
-        sols
+        solutions
     """
     if queens == len(board):
-        sols.append(solution(board))
-        return sols
+        solutions.append(get_solution(board))
+        return solutions
 
-    for c in range(len(board)):
-        if board[row][c] == " ":
-            tmp_board = copy(board)
-            tmp_board[row][c] = "Q"
-            x_out(tmp_board, row, c)
-            sols = solve(tmp_board, row + 1, queens + 1, sols)
+    for col in range(len(board)):
+        if board[row][col] == " ":
+            temp_board = copy_board(board)
+            temp_board[row][col] = "Q"
+            mark_unavailable_spots(temp_board, row, col)
+            solutions = solve_nqueens(temp_board, row + 1, queens + 1, solutions)
 
-    return sols
+    return solutions
 
 
 if __name__ == "__main__":
@@ -119,7 +119,7 @@ if __name__ == "__main__":
         print("N must be at least 4")
         sys.exit(1)
 
-    board = init(int(sys.argv[1]))
-    sols = solve(board, 0, 0, [])
-    for sol in sols:
-        print(sol)
+    chessboard = initialize_board(int(sys.argv[1]))
+    solution_set = solve_nqueens(chessboard, 0, 0, [])
+    for solution in solution_set:
+        print(solution)
