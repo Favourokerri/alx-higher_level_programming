@@ -4,7 +4,7 @@
 import sys
 
 
-def initialize_board(n):
+def init_board(n):
     """Initialize an `n`x`n` sized chessboard with 0's."""
     board = []
     [board.append([]) for _ in range(n)]
@@ -30,7 +30,7 @@ def get_solution(board):
     return solution
 
 
-def mark_unavailable_spots(board, row, col):
+def mark_unavail_spots(board, row, col):
     """Mark spots on a chessboard as unavailable.
 
     All spots where non-attacking queens can no
@@ -83,29 +83,29 @@ def mark_unavailable_spots(board, row, col):
         c -= 1
 
 
-def solve_nqueens(board, row, queens, solutions):
+def solve_nqueens(board, row, queens, solu):
     """Recursively solve an N-queens puzzle.
 
     Args:
         board (list): The current working chessboard.
         row (int): The current working row.
         queens (int): The current number of placed queens.
-        solutions (list): A list of lists of solutions.
+        solu (list): A list of lists of solutions.
     Returns:
-        solutions
+        solu
     """
     if queens == len(board):
-        solutions.append(get_solution(board))
-        return solutions
+        solu.append(get_solution(board))
+        return solu
 
     for col in range(len(board)):
         if board[row][col] == " ":
-            temp_board = copy_board(board)
-            temp_board[row][col] = "Q"
-            mark_unavailable_spots(temp_board, row, col)
-            solutions = solve_nqueens(temp_board, row + 1, queens + 1, solutions)
+            t_board = copy_board(board)
+            t_board[row][col] = "Q"
+            mark_unavail_spots(t_board, row, col)
+            solu = solve_nqueens(t_board, row + 1, queens + 1, solu)
 
-    return solutions
+    return solu
 
 
 if __name__ == "__main__":
@@ -119,7 +119,7 @@ if __name__ == "__main__":
         print("N must be at least 4")
         sys.exit(1)
 
-    chessboard = initialize_board(int(sys.argv[1]))
+    chessboard = init_board(int(sys.argv[1]))
     solution_set = solve_nqueens(chessboard, 0, 0, [])
     for solution in solution_set:
         print(solution)
