@@ -7,8 +7,6 @@ def is_same_class(obj, a_class):
     Args:
         obj - object to be checked
         a_class - the Base class
+    Returns: true if object isinstance otherwise false
     """
-    if isinstance(obj, a_class):
-        return True
-    elif not isinstance(obj, a_class):
-        return False
+    return (type(obj) == a_class)
