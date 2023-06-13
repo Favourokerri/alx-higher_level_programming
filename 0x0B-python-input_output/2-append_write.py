@@ -4,16 +4,15 @@ and returns the number of characters added:
 """
 
 def append_write(filename="", text=""):
-    """function that returns thr number of characters appended to a file
+    """function that returns the number of characters appended to a file
     Args:
         filename - name of file
         text - text written
-    Returns: number of characters
+    Returns:
+        letter_count - number of characters appended
     """
-    def append_write(filename="", text=""):
-        """function that returns number of characters"""
-        letter_count = 0
-        with open(filename, "a", encoding="UTF8") as f:
-            append_data = f.write(text)
-            letter_count = len(text)
-        return (letter_count)
+    letter_count = 0
+    with open(filename, "a", encoding="UTF8") as f:
+        append_data = f.write(text)
+        letter_count = len(text)
+    return letter_count
