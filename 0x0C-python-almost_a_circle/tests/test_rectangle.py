@@ -35,6 +35,7 @@ class RectangleTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             Rectangle(10, 2, 0, -5)
 
+<<<<<<< HEAD
     def test_area(self):
         r1 = Rectangle(2, 3)
         area_r1 = r1.area()
@@ -52,6 +53,13 @@ class RectangleTestCase(unittest.TestCase):
         actual_output = captured_output.getvalue()
         self.assertEqual(actual_output, expected_output)
 
+=======
+    def test_str_method(self):
+        rectangle = Rectangle(10, 5, 2, 3, 1)
+        expected_output = "[Rectangle] (1) 2/3 - 10/5"
+        actual_output = str(rectangle)
+        self.assertEqual(actual_output, expected_output)
+>>>>>>> ab1abecd7f4325ff3c127f1eb2dec6a5f0f67626
 
 if __name__ == "__main__":
     unittest.main()
