@@ -2,6 +2,7 @@
 import unittest
 from models.base import Base
 
+
 class BaseTestCase(unittest.TestCase):
     def test_id_assignment_with_positive_id(self):
         '''
