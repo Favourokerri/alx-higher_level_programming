@@ -235,3 +235,95 @@ class test_rectangle(unittest.TestCase):
     def test_str_overload(self):
         r = Rectangle(5, 10, 8, 7, 88)
         self.assertEqual(r.__str__(), "[Rectangle] (88) 8/7 - 5/10")
+
+    def test_update_width(self):
+        '''
+            Testing the update method
+        '''
+        self.r.update(54, 30)
+        self.assertEqual(30, self.r.width)
+
+    def test_update_height(self):
+        '''
+            Testing the update method
+        '''
+        self.r.update(54, 30, 10)
+        self.assertEqual(10, self.r.height)
+
+    def test_update_x(self):
+        '''
+            Testing the update method
+        '''
+        self.r.update(54, 30, 10, 6)
+        self.assertEqual(6, self.r.x)
+
+    def test_update_y(self):
+        '''
+            Testing the update method
+        '''
+        self.r.update(54, 30, 10, 6, 2)
+        self.assertEqual(2, self.r.y)
+
+    def test_update_dict(self):
+        '''
+            Testing the update method with **kwargs
+        '''
+        self.r.update(y=1, width=2, x=3, id=89)
+        self.assertEqual(1, self.r.y)
+        self.assertEqual(2, self.r.width)
+        self.assertEqual(3, self.r.x)
+        self.assertEqual(89, self.r.id)
+
+    def test_update_dict_list(self):
+        '''
+            Testing the update method with **kwargs and *args
+        '''
+        self.r.update(1000, y=1, width=2, x=3, id=89)
+        self.assertEqual(1000, self.r.id)
+
+    def test_update_dict(self):
+        '''
+            Testing the update method with **kwargs
+        '''
+        self.r.update(y=1, width=2, x=3, id=89)
+        self.assertEqual(1, self.r.y)
+        self.assertEqual(2, self.r.width)
+        self.assertEqual(3, self.r.x)
+        self.assertEqual(89, self.r.id)
+
+    def test_update_dict_list(self):
+        '''
+            Testing the update method with **kwargs and *args
+        '''
+        self.r.update(1000, y=1, width=2, x=3, id=89)
+        self.assertEqual(1000, self.r.id)
+
+    def test_to_dict(self):
+        '''
+            Testing the type that is returned from the to_dictionary method
+        '''
+        r1 = Rectangle(5, 4)
+        self.assertEqual(type(r1.to_dictionary()), dict)
+
+    def test_to_dict_print(self):
+        '''
+            Testing the dict that will be printed
+        '''
+        r1 = Rectangle(5, 4, 0, 0, 400)
+        r1_dict = r1.to_dictionary()
+        self.assertEqual(r1_dict,
+                         {'height': 4, 'id': 400, 'width': 5, 'x': 0, 'y': 0})
+
+    def test_missing_height(self):
+        '''
+            Expecting a type error because height and width are missing
+        '''
+        with self.assertRaises(TypeError):
+            Rectangle()
+
+    def test_missing_width(self):
+        '''
+            Expecting an error because width is missing
+        '''
+        with self.assertRaises(TypeError):
+            Rectangle(1)
