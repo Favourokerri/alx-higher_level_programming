@@ -121,7 +121,6 @@ class Base:
         except IOError:
             return []
 
-    @staticmethod
     def draw(list_rectangles, list_squares):
         """Draw Rectangles and Squares using the turtle module.
 
@@ -129,35 +128,31 @@ class Base:
             list_rectangles (list): A list of Rectangle objects to draw.
             list_squares (list): A list of Square objects to draw.
         """
+        screen = turtle.Screen()
+        screen.bgcolor("#b7312c")
+
         turt = turtle.Turtle()
-        turt.screen.bgcolor("#b7312c")
         turt.pensize(3)
         turt.shape("turtle")
 
-        turt.color("#ffffff")
+        turt.color("#ffd700")
         for rect in list_rectangles:
-            turt.showturtle()
-            turt.up()
+            turt.penup()
             turt.goto(rect.x, rect.y)
-            turt.down()
-            for i in range(2):
+            turt.pendown()
+            for _ in range(2):
                 turt.forward(rect.width)
                 turt.left(90)
                 turt.forward(rect.height)
                 turt.left(90)
-            turt.hideturtle()
 
-        turt.color("#b5e3d8")
+        turt.color("#32cd32")
         for sq in list_squares:
-            turt.showturtle()
-            turt.up()
+            turt.penup()
             turt.goto(sq.x, sq.y)
-            turt.down()
-            for i in range(2):
-                turt.forward(sq.width)
+            turt.pendown()
+            for _ in range(4):
+                turt.forward(sq.side_length)
                 turt.left(90)
-                turt.forward(sq.height)
-                turt.left(90)
-            turt.hideturtle()
 
         turtle.exitonclick()
