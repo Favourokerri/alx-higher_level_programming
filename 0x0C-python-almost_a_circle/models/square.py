@@ -1,38 +1,31 @@
 #!/usr/bin/python3
-"""square class """
+"""Defines a square class."""
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """class Rectangle """
-    def __init__(self, size, x=0, y=0, id=None):
-        self.size = size
-        self.x = x
-        self.y = y
-        self.id = id
-        super().__init__(size, size, x, y, id)
+    """Represent a square."""
 
-    def __str__(self):
-        """Defines a format for the string representation of the class"""
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
+    def __init__(self, size, x=0, y=0, id=None):
+        """Initialize a new Square."""
+        super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """Gets the value of size"""
-        return self.__width
+        """Get/set the size of the Square."""
+        return self.width
 
     @size.setter
     def size(self, value):
-        """Sets the value for size"""
-        if type(value) is not int:
-            raise TypeError("width must be an integer")
-        if value <= 0:
-            raise ValueError("width must be > 0")
-        self.__width = value
-        self.__height = value
+        self.width = value
+        self.height = value
+
+    def __str__(self):
+        """Return the print() and str() representation of a Square."""
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
 
     def update(self, *args, **kwargs):
-        """update ards"""
+        """Update the Square"""
         if args and len(args) != 0:
             a = 0
             for arg in args:
