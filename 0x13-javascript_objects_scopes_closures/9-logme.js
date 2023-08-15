@@ -1,9 +1,8 @@
 #!/usr/bin/node
+// a function that prints the number of arguments already printed and the new argument value
 
-exports.converter = function (base) {
-  function myConverter (n) {
-    return n.toString(base);
-  }
-
-  return myConverter;
+let count = 0;
+exports.logMe = function (item) {
+  console.log(count + ': ' + item);
+  count++;
 };
