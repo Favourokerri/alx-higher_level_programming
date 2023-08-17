@@ -12,11 +12,13 @@ if __name__ == '__main__':
     script takes 3 arguments:
     mysql username, mysql password, database name
     """
-    db_connect = MySQLdb.connect(host='localhost', user=argv[1], port=3306, passwd=argv[2], db=argv[3])
+    db_connect = MySQLdb.connect(host='localhost',
+                                 user=argv[1], port=3306,
+                                 passwd=argv[2], db=argv[3])
+
     db_cursor = db_connect.cursor()
     db_cursor.execute("SELECT id, name FROM states WHERE name LIKE 'N%'")
     names = db_cursor.fetchall()
 
     for name in names:
         print(name)
-
