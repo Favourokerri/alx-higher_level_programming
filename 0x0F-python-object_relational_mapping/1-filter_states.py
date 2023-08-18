@@ -17,9 +17,6 @@ if __name__ == '__main__':
                                  passwd=argv[2], db=argv[3])
 
     db_cursor = db_connect.cursor()
-    db_cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' \
-                     ORDER BY id ASC")
-    states = db_cursor.fetchall()
+    db_cursor.execute("SELECT * FROM states ORDER BY id")
 
-    for state in states:
-        print(state)
+    [print(states) for states in db_cursor.fetchall() if states[1][0] == 'N']
