@@ -19,11 +19,7 @@ if __name__ == '__main__':
                            db=argv[3])
 
     db_cursor = db_conect.cursor()
-    query = ("SELECT id, name FROM states WHERE name = %s \
-            ORDER BY states.id ASC")
-
-    name_to_match = argv[4]
-    db_cursor.execute(query, (name_to_match,))
+    db_cursor.execute("SELECT * FROM states")
 
     selected_state = db_cursor.fetchall()
-    [print(state) for state in selected_state]
+    [print(state) for state in selected_state if state[1] == argv[4]]
