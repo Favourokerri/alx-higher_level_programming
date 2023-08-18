@@ -14,9 +14,8 @@ if __name__ == '__main__':
                            port=3306,
                            db=argv[3])
     db_cursor = db_conect.cursor()
+    db_cursor.execute("SELECT * FROM states")
 
-    db_cursor.execute("SELECT id, name FROM states WHERE name='{}' \
-                      ORDER BY states.id ASC".format(argv[4]))
     selected_state = db_cursor.fetchall()
-    for state in selected_state:
-        print(state)
+    [print("{}".format(state))
+     for state in selected_state if state[1] == argv[4]]
