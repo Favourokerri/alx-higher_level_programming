@@ -17,7 +17,8 @@ if __name__ == '__main__':
                                  passwd=argv[2], db=argv[3])
 
     db_cursor = db_connect.cursor()
-    db_cursor.execute("SELECT id, name FROM states WHERE name LIKE 'N%'")
+    db_cursor.execute("SELECT id, name FROM states WHERE name LIKE 'N%' \
+                     ORDER BY states.id ASC")
     names = db_cursor.fetchall()
 
     for name in names:
