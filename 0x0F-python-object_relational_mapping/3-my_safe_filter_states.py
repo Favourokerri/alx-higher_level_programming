@@ -1,16 +1,18 @@
 #!/usr/bin/python3
-import MySQLdb as db
-from sys import argv
 
 """
     a script that takes in an argument and displays
     all values in the states table of hbtn_0e_0_usa
     where name matches the argument.
 """
+import MySQLdb as db
+from sys import argv
+
 if __name__ == '__main__':
     """
          script takes 4 arguments: mysql username,
-         mysql password, database name and state name searched
+         mysql password, database name
+         and state name searched
     """
     db_conect = db.connect(host='localhost',
                            user=argv[1],
