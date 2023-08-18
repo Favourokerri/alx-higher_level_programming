@@ -8,6 +8,10 @@ from sys import argv
     where name matches the argument.
 """
 if __name__ == '__main__':
+    """
+         script takes 4 arguments: mysql username,
+         mysql password, database name and state name searched
+    """
     db_conect = db.connect(host='localhost',
                            user=argv[1],
                            passwd=argv[2],
@@ -22,5 +26,4 @@ if __name__ == '__main__':
     db_cursor.execute(query, (name_to_match,))
 
     selected_state = db_cursor.fetchall()
-    for state in selected_state:
-        print(state)
+    [print(state) for state in selected_state]
